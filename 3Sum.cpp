@@ -3,21 +3,32 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
 	sort(nums.begin(),nums.end());
        vector<vector<int>> res;
-        for(int i=0; i<nums.size()-2; i++)
+        for(int i=0; i<nums.size(); i++)
         {
-            for(int j=i+1;j<nums.size()-1;j++)
+            int j=i+1;
+            int k=nums.size()-1;
+            while(j<k)
             {
-                for(int k=j+1;k<nums.size();k++)
-                {
                     if(nums[i]+nums[j]+nums[k]==0)
                     {
                        
                         res.push_back({nums[i],nums[j],nums[k]});
-                        break;
+                        
+                        j++;
+                        k--;
                     }
+                else if(nums[i]+nums[j]+nums[k]<0)
+                {
+                    j++;
+                }
+                else
+                {
+                    k--;
                 }
             }
         }
+        //res.unique();
+        
         return res;
     }
 };
